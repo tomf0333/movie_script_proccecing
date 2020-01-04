@@ -1,0 +1,44 @@
+tomf0333
+
+
+Packages:
+	filesprocessing:
+		DirectoryProcessor - the class that actually has the main of the program, uses Section and the
+			filters and orders in their own packages to print to the user the files they wanted with the
+			correct filters and orders they wanted (and any errors along the way).
+		Section - a class that represents a SECTION as it was defined in the ex description (a collection
+			of lines each helping the ordering and filtering of the required files) and a method that
+			returns the TypeIExceptions that occurred followed by the files requested for each Section.
+		SplitString - a static class that is only used to split a line into a few Strings with a seperator
+			(it was made as a class because i use it in several places and felt it made more sense than
+			making it a method in another class).
+	TypeExceptions:
+		TypeIIExceptions - the Exception that i raise in case a TypeIIException case happens (as defined
+			in the ex description), only saves the message needed for the Exception.
+		(originally there was also TypeIException but as i continued with the program i noticed that there
+		was no use for it the way i wrote this so it was deleted).
+	Filters:
+		*im not going to explain each filter, but there is a filter for each needed filter from the ex
+		description*
+		FilterSubsection - a class that resembles a factory for the different filters in the package,
+			only it doesn't create an object of the filter but only calls the correct filter that was
+			requested.
+			it also houses a filters enum used to make sure only correct filters will be requested.
+	orders:
+		*again im not going to explain each order, but there is an order for each needed order from
+		the ex description*
+		OrderSubsection - a class that resembles a factory for the different orders in the package,
+			only it doesn't create an object of the order but only calls the correct order that was
+			requested.
+			it also houses an orders enum used to make sure only correct orders will be requested.
+		Sorter - a class that has the sorting algorithm used by the ordering classes (i chose MergeSort).
+	
+Design and questions:
+	as i mentioned i designed a semi factory for the filters and orders with enums to prevent problems as
+	much as i could, and i made the Section class so i could just transfer all the information needed to one
+	place and sort and filter and what-not there.
+	as a result of this i had no need for TypeIExceptions which i think is better because there are less
+	instances were my program crashes (even if the exception will be used so it won't actually crash)
+	
+	i used mergesort for the sorting algorithm because i knew how to modify it easly so it could match
+	all the sorts i needed and because it was in the right effcientcy.

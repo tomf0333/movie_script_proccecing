@@ -1,0 +1,57 @@
+tomf0333
+
+
+Packages:
+	filesprocessing:
+		DirectoryProcessor - the class that actually has the main of the program, uses Section and the
+			filters and orders in their own packages to print to the user the files they wanted with the
+			correct filters and orders they wanted (and any errors along the way).
+		Section - a class that represents a SECTION as it was defined in the ex description (a collection
+			of lines each helping the ordering and filtering of the required files) and a method that
+			returns the TypeIExceptions that occurred followed by the files requested for each Section.
+		SplitString - a static class that is only used to split a line into a few Strings with a seperator
+			(it was made as a class because i use it in several places and felt it made more sense than
+			making it a method in another class).
+	TypeExceptions:
+		TypeIIExceptions - the Exception that i raise in case a TypeIIException case happens (as defined
+			in the ex description), only saves the message needed for the Exception.
+		(originally there was also TypeIException but as i continued with the program i noticed that there
+		was no use for it the way i wrote this so it was deleted).
+	Filters:
+		*im not going to explain each filter, but there is a filter for each needed filter from the ex
+		description*
+		FilterSubsection - a class that resembles a factory for the different filters in the package,
+			only it doesn't create an object of the filter but only calls the correct filter that was
+			requested.
+			it also houses a filters enum used to make sure only correct filters will be requested.
+	orders:
+		*again im not going to explain each order, but there is an order for each needed order from
+		the ex description*
+		OrderSubsection - a class that resembles a factory for the different orders in the package,
+			only it doesn't create an object of the order but only calls the correct order that was
+			requested.
+			it also houses an orders enum used to make sure only correct orders will be requested.
+		Sorter - a class that has the sorting algorithm used by the ordering classes (i chose MergeSort).
+	
+Design:
+	
+	
+Implementation issues:
+	1 - OpenHashSet was implemented with a specificFacadeSet which inherits from CollectionFacadeSet and is
+		essencially an array of linked lists where each cell is a bucket to which we insert the Strings.
+	2 - the deletion method in ClosedHashSet uses the search probe that contains uses to find the String
+		we want to delete then it turns it to deleted which in SuperString means that its value is null
+		like a normal empty string but its member that says it was deleted is turned on which means if the
+		probe search goes over it it will continue to search.
+		if it wasn't found in the Set then it will do nothing and return false.
+	
+	
+Answers to questions:
+	1 - the analesys for OpenHashSet and ClosedHashSet in inserting data1.txt was very long when compared
+		to java's collections because i assume they are better then me in writing their code.
+		plus according to information from the 4th test all the Strings in data1.txt have the same hash
+		code so obbviously it would take a long time the way we were told to implement these classes.
+	2 - it seems that java's hash set was the winner of pretty much all the tests so mostly i would use it
+		instead of the others.
+	3 - mostly OpenHashSet faired better then ClosedHashSet which makes sense if there was a reletively
+		good spread of Strings.
